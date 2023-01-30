@@ -1,7 +1,13 @@
 import React from 'react';
+import {Link} from "react-router-dom";
+import "./home.scss"
 
 const Home = () => (
-    <div>home</div>
+    <Link to="/vendors">
+        <button type="button" className="link-button">
+            صفحه رستوران ها
+        </button>
+    </Link>
 );
 
 export default Home
