@@ -6,20 +6,33 @@ const initialState = {
     loading: false,
     vendors: [],
     filters: {page: 0, page_size: 10, lat: 35.754, long: 51.328},
-    error: ''
+    error: '',
+    change: false
 }
 
 const fetchVendors = createAsyncThunk(
-    'vendors/fetchVendors', (filters) => http.get(RequestEndpoints.vendors, filters || initialState.filters).then((response) => response.data.data.finalResult.filter((vendor) => vendor.type === 'VENDOR')))
-
+    "vendors/fetchVendors",
+    async (arg, {getState}) => {
+        const state = getState().vendors;
+        http.get(RequestEndpoints.vendors, state.filters).then((response) => response.data.data.finalResult.filter((vendor) => vendor.type === 'VENDOR'))
+    }
+);
 const vendorsSlice = createSlice({
     name: 'vendors',
     initialState,
     reducers: {
-        filteredVendors: (state, action) => {
-            fetchVendors(state.filters)
-            console.log(action)
-        }
+        removeChange: (state,) => ({
+            ...state,
+            change: false,
+        }),
+        addPage: (state,) => ({
+            ...state,
+            change: true,
+            filters: {
+                ...state.filters,
+                page: state.filters.page + 1
+            }
+        })
     },
     extraReducers: (builder) => {
         builder.addCase(fetchVendors.pending, (state) => {
@@ -37,6 +50,6 @@ const vendorsSlice = createSlice({
         }))
     }
 })
-export const {filteredVendors} = vendorsSlice.actions
+export const {addPage, removeChange} = vendorsSlice.actions
 export {fetchVendors}
 export default vendorsSlice.reducer

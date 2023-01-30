@@ -1,3 +1,3 @@
 export default {
-    vendors: "restaurant/vendors-list "
+    vendors: "restaurant/vendors-list"
 }
