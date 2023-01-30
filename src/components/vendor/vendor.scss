@@ -43,6 +43,15 @@
     padding: 20px 16px 8px 16px;
     font-size: $text--medium;
     color: $text--color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+  }
+
+  &--content-header {
+    display: flex;
+    justify-content: space-between;
   }
 
   &--badge {
@@ -60,5 +69,21 @@
     overflow: hidden;
     background-color: #fff;
     white-space: nowrap;
+  }
+
+  &--score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+  }
+
+  &--rate {
+    background-color: $dark-bilbao-color;
+    padding: 4px;
+  }
+
+  &--delivery {
+    color: $text-color-light;
   }
 }
