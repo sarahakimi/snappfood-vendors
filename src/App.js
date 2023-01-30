@@ -6,17 +6,20 @@ import Page404 from "./views/404-page/404-page";
 import {fetchVendors, removeChange} from "./redux/vendorsSlice";
 
 const App = () => {
-    const change = useSelector((state) => state.vendors.change);
+    const change = useSelector((state) => state.vendors.change)
+    const loading = useSelector((state) => state.vendors.loading);
+    const error = useSelector((state) => state.vendors.error);
     const dispatch = useDispatch()
-
     useEffect(() => {
+
         if (change) {
             dispatch(fetchVendors())
             dispatch(removeChange())
         }
+
     }, [change])
-    
-    return <BrowserRouter>
+
+    return <><BrowserRouter>
         <Routes>
             ...{routes.map((element) => {
             const elemPath = element.path;
@@ -32,6 +35,9 @@ const App = () => {
             <Route path="*" element={<Page404/>}/>
         </Routes>
     </BrowserRouter>
+        {loading && <p>در حال دریافت اطلاعات</p>}
+        {error && <p>{error}</p>}
+    </>
 }
 
 export default App;

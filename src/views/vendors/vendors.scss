@@ -1,0 +1,19 @@
+@import "src/style/variables";
+
+.vendors-container {
+  box-sizing: border-box;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+
+  &--contents {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 567px;
+    min-width: 300px;
+    margin: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

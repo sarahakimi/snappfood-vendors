@@ -1,0 +1,64 @@
+@import "src/style/variables";
+
+.single-vendor {
+  box-sizing: border-box;
+  height: 248px;
+  width: 100%;
+  border-radius: 6px;
+  background-color: $color--white;
+  border: solid 0.5px $seperator-color;
+  box-shadow: $card--shadow;
+
+  &--background {
+    position: relative;
+    height: $card--background;
+    width: 100%;
+  }
+
+  &--background-image {
+    border-radius: 6px 6px 0 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &--logo-container {
+    position: absolute;
+    bottom: -16px;
+    right: 8px;
+    width: 64px;
+    height: 64px;
+    padding: 4px;
+    border-radius: 8px;
+    box-shadow: $card-shadow-2;
+  }
+
+  &--logo {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid $alpha-carbon-grey
+  }
+
+  &--content {
+    padding: 20px 16px 8px 16px;
+    font-size: $text--medium;
+    color: $text--color;
+  }
+
+  &--badge {
+    position: absolute;
+    top: 16px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 8px;
+    color: $primary-deep-green;
+    width: min-content;
+    height: 24px;
+    border-radius: 16px 0 0 16px;
+    padding: 4px 8px;
+    overflow: hidden;
+    background-color: #fff;
+    white-space: nowrap;
+  }
+}

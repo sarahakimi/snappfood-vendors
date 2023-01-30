@@ -5,7 +5,7 @@ import RequestEndpoints from "config/requestEndpoints";
 const initialState = {
     loading: false,
     vendors: [],
-    filters: {page: 0, page_size: 10, lat: 35.754, long: 51.328},
+    filters: {page: -1, page_size: 10, lat: 35.754, long: 51.328},
     error: '',
     change: false
 }
@@ -14,7 +14,8 @@ const fetchVendors = createAsyncThunk(
     "vendors/fetchVendors",
     async (arg, {getState}) => {
         const state = getState().vendors;
-        http.get(RequestEndpoints.vendors, state.filters).then((response) => response.data.data.finalResult.filter((vendor) => vendor.type === 'VENDOR'))
+        if (state.filters.page === -1) return []
+        return http.get(RequestEndpoints.vendors, state.filters).then((response) => response.data.data.finalResult.filter((vendor) => vendor.type === 'VENDOR'))
     }
 );
 const vendorsSlice = createSlice({
@@ -40,7 +41,8 @@ const vendorsSlice = createSlice({
         })
         builder.addCase(fetchVendors.fulfilled, (state, action) => {
             state.loading = false
-            state.vendors = action.payload
+            console.log(action.payload)
+            state.vendors = [...state.vendors, ...action.payload]
             state.error = ''
         })
         builder.addCase((fetchVendors.rejected, (state, action) => {
