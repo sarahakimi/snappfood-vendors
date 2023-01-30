@@ -1,10 +1,12 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://api.qbar.ir/v1/foo";
+axios.defaults.baseURL = "/api";
 
 const headers = {
     headers: {
         "content-type": "application/json",
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Methods': '*'
     },
 };
 
